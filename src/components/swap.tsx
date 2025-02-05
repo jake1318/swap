@@ -131,8 +131,10 @@ const Swap: React.FC = () => {
       // IMPORTANT: Attach a toJSON method so that dapp-kit can serialize the transaction.
       (tx as any).toJSON = () => tx.serialize();
 
-      // Sign and execute the transaction via the connected wallet.
-      // Note the updated parameter: use `transaction` (not `transactionBlock`) and include the chain.
+      // 3-b: Increase Logging – log the serialized transaction payload before signing.
+      console.log("Serialized transaction:", tx.serialize());
+
+      // 2-c: Override type checking if needed – cast tx to any to match expected types.
       const result = await signAndExecute({
         transaction: tx as any,
         chain: "sui:mainnet",
