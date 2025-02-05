@@ -134,7 +134,7 @@ const Swap: React.FC = () => {
       // Sign and execute the transaction via the connected wallet.
       // Note the updated parameter: use `transaction` (not `transactionBlock`) and include the chain.
       const result = await signAndExecute({
-        transaction: tx,
+        transaction: tx as any,
         chain: "sui:mainnet",
       });
       setTxResult(result.digest || "Transaction submitted");
